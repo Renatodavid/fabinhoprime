@@ -185,3 +185,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const videos = document.querySelectorAll(".video");
+  const darkModeIcon = document.querySelector("#darkMode-icon");
+
+  // Função para destacar o vídeo em reprodução
+  videos.forEach(video => {
+    video.addEventListener("play", function () {
+      videos.forEach(v => v.classList.remove("playing"));
+      this.classList.add("playing");
+    });
+
+    video.addEventListener("pause", function () {
+      this.classList.remove("playing");
+    });
+
+    video.addEventListener("ended", function () {
+      this.classList.remove("playing");
+    });
+  });
+
+  // Função para alternar o modo escuro
+  darkModeIcon.onclick = () => {
+    darkModeIcon.classList.toggle("bx-sun");
+    document.body.classList.toggle("dark-mode");
+  };
+});
